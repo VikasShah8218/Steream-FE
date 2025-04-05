@@ -24,6 +24,21 @@ const Home: React.FC = () => {
     }
   };
 
+  const maximizeVideo = () => {
+    const video = videoRef.current;
+    if (video) {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if ((video as any).webkitRequestFullscreen) { // Safari
+        (video as any).webkitRequestFullscreen();
+      } else if ((video as any).mozRequestFullScreen) { // Firefox
+        (video as any).mozRequestFullScreen();
+      } else if ((video as any).msRequestFullscreen) { // IE/Edge
+        (video as any).msRequestFullscreen();
+      }
+    }
+  };
+
   const sendMessageWS = (message: object) => {if (wsConnection && wsConnection.readyState === WebSocket.OPEN) { wsConnection.send(JSON.stringify(message));}}
   const playVideo  = () => videoRef.current?.play();
   const pauseVideo = () => videoRef.current?.pause();
@@ -82,7 +97,6 @@ const Home: React.FC = () => {
             <button onClick={() => seekTo(10)} className="btn">Seek to 10s</button>
             <button onClick={() => changePlaybackRate(2)} className="btn">2x Speed</button>
             <button onClick={() => changePlaybackRate(1)} className="btn">Normal Speed</button>
-            <button onClick={() => sendMessageWS({":":"Shah"})} className="btn">Check kr</button>
           </div>
           <div className="flex space-x-4">
             <button onClick={() => serverControlPush("play")} className="btn">Play</button>
@@ -90,10 +104,8 @@ const Home: React.FC = () => {
             <input ref={skipVideoServer} type="number" className='btn' />
             <button onClick={() => serverControlPush("skip",skipVideoServer.current?.value)} className="btn">Skip</button>
             <button onClick={() => changePlaybackRate(2)} className="btn">Stop</button>
-            <button onClick={() => changePlaybackRate(2)} className="btn">Seek to 10s</button>
-            <button onClick={() => changePlaybackRate(2)} className="btn">2x Speed</button>
-            <button onClick={() => changePlaybackRate(2)} className="btn">Normal Speed</button>
             <button onClick={() => dispatch(logout())} className="btn">Logout</button>
+            <button onClick={maximizeVideo} className="btn">Maximize</button>
           </div>
         </>
       )}
