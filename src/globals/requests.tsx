@@ -3,8 +3,9 @@ import { getAuthToken } from "./auth";
 import store from "../app/store";
 import { logout } from "../app/slices/authSlice";
 
-// const BASE_URL = "http://localhost:8000";
-const BASE_URL = "http://13.49.145.155:8000";
+const BASE_URL = "http://localhost:8000";
+const WS_URL   = "ws://localhost:8000/ws?token=";
+// const BASE_URL = "http://13.49.145.155:8000";
 
 const ERROR_MSG = { type: "error", text: "Something went wrong." };
 
@@ -159,4 +160,4 @@ const deleteFromServer = async (url:string, data = {}) => {
   }
 };
 
-export { getFromServer, postToServer, putToServer ,deleteFromServer,patchToServer,postToServerFileUpload,getFromServerDownload ,BASE_URL};
+export { getFromServer, postToServer, putToServer ,deleteFromServer,patchToServer,postToServerFileUpload,getFromServerDownload ,BASE_URL, WS_URL};

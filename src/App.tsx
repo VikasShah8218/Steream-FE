@@ -9,11 +9,12 @@ import Home from "./components/pages/home";
 import './App.css'
 
 function App() {
+  const authenticated = useSelector((state:any) => state.auth.authenticated);
   useEffect(() => {
+    if (!authenticated) {console.log("Not Authenticated -> So WS not Initialises"); return};
     const ws:any = initializeWebSocket();
     return () => {ws.close();};
-  }, []);
-  const authenticated = useSelector((state:any) => state.auth.authenticated);
+  }, [authenticated]);
   const router = createBrowserRouter([
     {
       path: "login",

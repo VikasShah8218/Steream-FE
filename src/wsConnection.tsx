@@ -1,13 +1,13 @@
 import  store from "./app/store" 
 import { getAuthToken } from "./globals/auth";
 import { setWsMessage , setWsConnection } from "./app/slices/authSlice";
+import { WS_URL } from "./globals/requests";
 
 export const initializeWebSocket = () => {
   let ws: WebSocket | null = null;
 
   const connectWebSocket = () => {
-    ws = new WebSocket("ws://13.49.145.155:8000/ws?token=" + getAuthToken());
-    // ws = new WebSocket("ws://13.49.145.155:8000/ws");
+    ws = new WebSocket(WS_URL + getAuthToken());
     ws.onopen    = () => {console.log("WebSocket connection established");};
     ws.onmessage = (event) => { store.dispatch(setWsMessage(JSON.parse(event.data))) };
     ws.onclose   = () => {console.log("WebSocket connection closed. Reconnecting...");reconnectWebSocket();};
