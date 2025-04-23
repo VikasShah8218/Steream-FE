@@ -90,14 +90,6 @@ const Home: React.FC = () => {
           //  type="video/x-matroska"  // ← Add this
           className="w-full max-w-2xl rounded-lg shadow-lg" controls={false} />
           
-          {/* <div className="flex space-x-4">
-            <button onClick={playVideo} className="btn">Play</button>
-            <button onClick={pauseVideo} className="btn">Pause</button>
-            <button onClick={stopVideo} className="btn">Stop</button>
-            <button onClick={() => seekTo(10)} className="btn">Seek to 10s</button>
-            <button onClick={() => changePlaybackRate(2)} className="btn">2x Speed</button>
-            <button onClick={() => changePlaybackRate(1)} className="btn">Normal Speed</button>
-          </div> */}
           <div className="flex space-x-4">
             <button onClick={() => serverControlPush("play")} className="btn">Play</button>
             <button onClick={() => serverControlPush("pause")} className="btn">Pause</button>
