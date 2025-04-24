@@ -1,14 +1,14 @@
 import React, { useRef, useState ,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../app/slices/authSlice';
 
 // ws.send(JSON.stringify({type:"connect",data:{}}));
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const wsConnection = useSelector((state: any) => state.auth.wsConnection);
   const wsMessage    = useSelector((state: any) => state.auth.wsMessage);
 
@@ -40,16 +40,16 @@ const Home: React.FC = () => {
   };
 
   const sendMessageWS = (message: object) => {if (wsConnection && wsConnection.readyState === WebSocket.OPEN) { wsConnection.send(JSON.stringify(message));}}
-  const playVideo  = () => videoRef.current?.play();
-  const pauseVideo = () => videoRef.current?.pause();
-  const seekTo = (seconds: number) => {if (videoRef.current) {videoRef.current.currentTime = seconds;}};
-  const changePlaybackRate = (rate: number) => { if (videoRef.current) {videoRef.current.playbackRate = rate;}};
-  const stopVideo  = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
+  // const playVideo  = () => videoRef.current?.play();
+  // const pauseVideo = () => videoRef.current?.pause();
+  // const seekTo = (seconds: number) => {if (videoRef.current) {videoRef.current.currentTime = seconds;}};
+  // const changePlaybackRate = (rate: number) => { if (videoRef.current) {videoRef.current.playbackRate = rate;}};
+  // const stopVideo  = () => {
+  //   if (videoRef.current) {
+  //     videoRef.current.pause();
+  //     videoRef.current.currentTime = 0;
+  //   }
+  // };
 
   const serverControlPush = (action:string, value:string="") => {
     if (action === "play" ){ sendMessageWS({action: "play" , value: videoRef?.current?.currentTime });}

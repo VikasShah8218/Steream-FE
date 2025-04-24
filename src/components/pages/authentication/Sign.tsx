@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../../app/slices/authSlice";
-import { BASE_URL } from "../../../globals/requests";
+// import { BASE_URL } from "../../../globals/requests";
 import { useRef } from "react";
 import { postToServer } from "../../../globals/requests";
 
